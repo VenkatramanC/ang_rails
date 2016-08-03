@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :fetch_task, only: [:show, :update] 
   def index 
     @tasks = Task.all
   end
@@ -12,9 +13,21 @@ class TasksController < ApplicationController
     @save_success = @task.save
   end
 
+  def update
+    @save_success = @task.update(task_params)
+    render :create
+  end
+
+  def destroy
+
+  end
+
 
   private
 
+    def fetch_task
+      @task = Task.find_by(id: params[:id])
+    end
     def task_params
       params.permit(:title)
     end
