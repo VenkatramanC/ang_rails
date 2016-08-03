@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :fetch_task, only: [:show, :update] 
+  before_action :fetch_task, only: [:show, :update, :destroy] 
   def index 
     @tasks = Task.all
   end
@@ -19,7 +19,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-
+    @task.destroy
   end
 
 
